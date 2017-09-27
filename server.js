@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -6,9 +7,7 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://localhost:27017/data', {
-  useMongoClient: true
-})
+mongoose.connect(process.env.DB_URL)
 mongoose.Promise = global.Promise;
 
 
@@ -28,6 +27,7 @@ app.use(require('./api-routes.js'));
 
 var port = process.env.PORT || 5003;
 
-app.listen(port, function() {
-  console.log('listening on port', port);
+app.listen(process.env.PORT || process.env.LOC_PORT,function(err){
+  if (err) return console.log(err);
+  console.log('Server Running: '+ process.env.LOC_PORT);
 });
