@@ -21,6 +21,7 @@ router.post('/api/todos', (req, res) => {
   set.description = req.body.description;
   set.personResponsible = req.body.personResponsible;
   set.isComplete = false;
+  set.dueDate = req.body.dueDate;
   newTodo.save().then(function(result){
     console.log("in post route:", result);
     res.redirect('/');
