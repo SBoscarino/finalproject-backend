@@ -17,11 +17,11 @@ router.get('/api/todos', function(req, res) {
 
 // route for adding one
 router.post('/api/todos', (req, res) => {
-  var todo = new Todo();
-  set.description = req.body.description;
-  set.personResponsible = req.body.personResponsible;
-  set.isComplete = false;
-  set.dueDate = req.body.dueDate;
+  var newTodo = new Todo();
+  newTodo.description = req.body.description;
+  newTodo.personResponsible = req.body.personResponsible;
+  newTodo.isComplete = false;
+  newTodo.dueDate = req.body.dueDate;
   newTodo.save().then(function(result){
     console.log("in post route:", result);
     res.redirect('/');
