@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.static('public'));
 
-mongoose.connect(process.env.DB_URL)
+mongoose.connect(process.env.MONGODB_URI)
 mongoose.Promise = global.Promise;
 
 
