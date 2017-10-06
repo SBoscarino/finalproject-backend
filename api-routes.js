@@ -15,7 +15,7 @@ router.get('/api/todos', function(req, res) {
 router.delete('/api/todos/delete/:id', (req, res) => {
   Todo.deleteOne({_id: req.params.id}).then(function(){
     console.log("in deletion route");
-    res.redirect('/');
+    res.sendStatus(204);
   }).catch(function(err){
     res.redirect('/')
     })
@@ -28,9 +28,8 @@ router.post('/api/todos', (req, res) => {
   newTodo.personResponsible = req.body.personResponsible;
   newTodo.isComplete = false;
   newTodo.dueDate = req.body.dueDate;
-  newTodo.save().then(function(result){
-    console.log("in post route:", result);
-    res.redirect('/');
+  newTodo.save().then(function(){
+    res.sendStatus(204);
   })
 });
 
