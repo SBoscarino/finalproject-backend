@@ -2,6 +2,14 @@ const express = require('express');
 const Todo = require('./models/todo');
 const router = express.Router();
 
+//testing alexa things
+router.post('/api/alexa', (req, res) => {
+  console.log('Alexa headers', req.headers);
+  console.log('Alexa params', req.params);
+  console.log('Alexa body', req.body);
+
+  res.sendStatus(204);
+});
 
 //get all
 router.get('/api/todos', function(req, res) {
@@ -32,8 +40,5 @@ router.post('/api/todos', (req, res) => {
     res.sendStatus(204);
   })
 });
-
-
-
 
 module.exports = router;
