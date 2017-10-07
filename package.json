@@ -4,6 +4,7 @@
   "description": "",
   "main": "api-routes.js",
   "dependencies": {
+    "alexa-sdk": "^1.0.14",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.5",
