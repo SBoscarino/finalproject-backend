@@ -3,57 +3,13 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const alexa = require('alexa-app');
+const alexaApp = require('./alexa');
 
 const app = express();
-
-// Alexa things
-
-// Creates route POST /cohort
-const alexaApp = new alexa.app('cohort');
 
 alexaApp.express({
   expressApp: app
 });
-
-alexaApp.launch(function(req, res) {
-  const prompt = 'Welcome to your todo app! Say, list all todos to get started.';
-
-  res.say(prompt)
-    .reprompt(prompt)
-    .shouldEndSession(false);
-});
-
-alexaApp.intent('ListIntent', {
-  utterances: [
-    'list all tasks',
-    'list all todos'
-  ],
-}, function(req, res) {
-  res.say("You have nothing todo!");
-});
-
-alexaApp.intent('AddTaskIntent', {
-  utterances: [
-    "add task",
-    "add todo"
-  ]
-}, function(req, res) {
-  res.say("Todo added!");
-});
-
-alexaApp.intent('DeleteTaskIntent', {
-  utterances: [
-    "delete task",
-    "delete todo",
-    "remove task",
-    "remove todo"
-  ]
-}, function(req, res) {
-  res.say("Todo deleted!");
-});
-
-// Rest of app
 
 app.use(express.static('public'));
 
