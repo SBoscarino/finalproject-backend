@@ -1,6 +1,22 @@
 const express = require('express');
 const Todo = require('./models/todo');
 const router = express.Router();
+const Alexa = require('alexa-sdk');
+
+const alexaHandlers = {
+  'list': function() {
+    console.log('list func');
+    this.emit(':tell', 'listing tasks');
+  },
+  'addTask': function() {
+    console.log('list func');
+    this.emit(':tell', 'adding task');
+  },
+  'deleteTask': function() {
+    console.log('list func');
+    this.emit(':tell', 'deleting task');
+  }
+};
 
 //testing alexa things
 router.post('/api/alexa', (req, res) => {
@@ -8,7 +24,12 @@ router.post('/api/alexa', (req, res) => {
   console.log('Alexa params', req.params);
   console.log('Alexa body', req.body);
 
-  res.sendStatus(204);
+  const alexa = Alexa.handler(req.body, {});
+  alexa.registerHandlers(alexaHandlers);
+  const resp = alexa.execute();
+  console.log('alexa resp', resp);
+
+  res.send(resp);
 });
 
 //get all
