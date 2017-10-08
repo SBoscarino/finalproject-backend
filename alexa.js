@@ -39,7 +39,9 @@ alexaApp.intent('ListIntent', {
       }
 
       res.say(say)
-        .reprompt(prompt);
+        .reprompt(prompt)
+        .shouldEndSession(false)
+        .send();
     });
 });
 
