@@ -39,7 +39,7 @@ alexaApp.intent('ListIntent', {
       }
 
       res.say(say)
-        .prompt(prompt);
+        .reprompt(prompt);
     });
 });
 
