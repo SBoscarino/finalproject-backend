@@ -44,7 +44,8 @@ alexaApp.intent('ListIntent', {
       console.log('reprompt', reprompt);
 
       return res.say(say)
-        .shouldEndSession(false, reprompt)
+        .shouldEndSession(false)
+        .reprompt(reprompt)
         .send();
     });
 });
