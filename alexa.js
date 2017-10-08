@@ -25,7 +25,7 @@ alexaApp.intent('ListIntent', {
 }, function(req, res) {
   console.log('ListIntent', req);
 
-  Todo.find({})
+  return Todo.find({})
     .exec(function(err, todos) {
       console.log('todos', todos);
 
