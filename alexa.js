@@ -28,19 +28,18 @@ alexaApp.intent('ListIntent', {
   Todo.find({})
     .exec(function(err, todos) {
       let say = '';
-      let prompt = '';
+      let reprompt = '';
 
       if (todos.length) {
         say = `You have ${todos.length} to-dos to complete.`;
-        prompt = 'Would you like me to list them?';
+        reprompt = 'Would you like me to list them?';
       } else {
         say = 'You have no to-dos to do!';
-        prompt = 'You can add to-dos by saying, add todo blablabla';
+        reprompt = 'You can add to-dos by saying, add todo blablabla';
       }
 
-      res.say(say)
-        .reprompt(prompt)
-        .shouldEndSession(false)
+      return res.say(say)
+        .shouldEndSession(false, reprompt)
         .send();
     });
 });
@@ -53,7 +52,8 @@ alexaApp.intent('AddTaskIntent', {
 }, function(req, res) {
   console.log('AddTaskIntent', req);
 
-  res.say("Todo added!");
+  return res.say("Todo added!")
+    .send();
 });
 
 alexaApp.intent('DeleteTaskIntent', {
@@ -66,7 +66,8 @@ alexaApp.intent('DeleteTaskIntent', {
 }, function(req, res) {
   console.log('DeleteTaskIntent', req);
 
-  res.say("Todo deleted!");
+  return res.say("Todo deleted!")
+    .send();
 });
 
 module.exports = alexaApp;
