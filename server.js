@@ -25,9 +25,31 @@ alexaApp.launch(function(req, res) {
 });
 
 alexaApp.intent('list', {
+  slots: [
+    {
+      name: 'date',
+      type: null,
+      samples: []
+    },
+    {
+      name: 'personResponsible',
+      type: null,
+      samples: []
+    },
+    {
+      name: 'tasks',
+      type: 'Description',
+      samples: []
+    }
+  ],
   utterances: [
-    "list my todos",
-    "list my tasks"
+    'list all {tasks}',
+    'what do I need {tasks} {date}',
+    '{tasks}',
+    'what are my {tasks}',
+    'what does {tasks} need to do {date}',
+    '{tasks} for {date}',
+    '{tasks} {date} {personResponsible}'
   ],
 }, function(req, res) {
   res.say("You have nothing todo!");
