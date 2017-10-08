@@ -3,13 +3,14 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const alexa = require('alexa-app');
 
 const app = express();
+
 app.use(express.static('public'));
 
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.Promise = global.Promise;
-
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -19,11 +20,46 @@ app.use((req, res, next) => {
     next();
 });
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(require('./api-routes.js'));
+
+// Alexa things
+
+// Creates route POST /cohort
+const alexaApp = new alexa.app('cohort');
+
+alexaApp.express({
+  expressApp: app
+});
+
+alexaApp.intent('list', {
+  utterances: [
+    "list my todos",
+    "list my tasks"
+  ],
+}, function(req, resp) {
+  resp.say("You have nothing todo!");
+});
+
+alexaApp.intent('addTask', {
+  utterances: [
+    "add task",
+    "add todo"
+  ]
+}, function(req, resp) {
+  resp.say("Todo added!");
+});
+
+alexaApp.intent('deleteTask', {
+  utterances: [
+    "delete task",
+    "delete todo"
+  ]
+}, function(req, resp) {
+  resp.say("Todo deleted!");
+});
 
 var port = process.env.PORT || 5003;
 
