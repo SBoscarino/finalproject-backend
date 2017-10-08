@@ -17,45 +17,23 @@ alexaApp.express({
 });
 
 alexaApp.launch(function(req, res) {
-  const prompt = 'Would you like to know more?';
+  const prompt = 'Welcome to your todo app! Say, list all todos to get started.';
 
   res.say(prompt)
     .reprompt(prompt)
     .shouldEndSession(false);
 });
 
-alexaApp.intent('list', {
-  slots: [
-    {
-      name: 'date',
-      type: null,
-      samples: []
-    },
-    {
-      name: 'personResponsible',
-      type: null,
-      samples: []
-    },
-    {
-      name: 'tasks',
-      type: 'Description',
-      samples: []
-    }
-  ],
+alexaApp.intent('ListIntent', {
   utterances: [
-    'list all {tasks}',
-    'what do I need {tasks} {date}',
-    '{tasks}',
-    'what are my {tasks}',
-    'what does {tasks} need to do {date}',
-    '{tasks} for {date}',
-    '{tasks} {date} {personResponsible}'
+    'list all tasks',
+    'list all todos'
   ],
 }, function(req, res) {
   res.say("You have nothing todo!");
 });
 
-alexaApp.intent('addTask', {
+alexaApp.intent('AddTaskIntent', {
   utterances: [
     "add task",
     "add todo"
@@ -64,10 +42,12 @@ alexaApp.intent('addTask', {
   res.say("Todo added!");
 });
 
-alexaApp.intent('deleteTask', {
+alexaApp.intent('DeleteTaskIntent', {
   utterances: [
     "delete task",
-    "delete todo"
+    "delete todo",
+    "remove task",
+    "remove todo"
   ]
 }, function(req, res) {
   res.say("Todo deleted!");

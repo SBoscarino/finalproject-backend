@@ -1,0 +1,39 @@
+{
+  "intents": [
+    {
+      "intent": "ListIntent"
+    },
+    {
+      "intent": "DeleteTaskIntent"
+    },
+    {
+      "intent": "AddTaskIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "CohortIntent",
+      "slots": [
+        {
+          "name": "date",
+          "type": "AMAZON.DATE"
+        },
+        {
+          "name": "personResponsible",
+          "type": "AMAZON.US_FIRST_NAME"
+        },
+        {
+          "name": "todo",
+          "type": "Description"
+        }
+      ]
+    }
+  ]
+}
