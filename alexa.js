@@ -27,6 +27,8 @@ alexaApp.intent('ListIntent', {
 
   Todo.find({})
     .exec(function(err, todos) {
+      console.log('todos', todos);
+
       let say = '';
       let reprompt = '';
 
@@ -37,6 +39,9 @@ alexaApp.intent('ListIntent', {
         say = 'You have no to-dos to do!';
         reprompt = 'You can add to-dos by saying, add todo blablabla';
       }
+
+      console.log('say', say);
+      console.log('reprompt', reprompt);
 
       return res.say(say)
         .shouldEndSession(false, reprompt)
