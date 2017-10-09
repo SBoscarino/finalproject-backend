@@ -62,17 +62,15 @@ alexaApp.intent('DescriptionIntent', {
     .exec(function(err, todos) {
 
       // let description;
-      let counter = 0;
-      let sayer = "there are" + counter + "items";
+      let sayer;
 
     if (todos.length){
-      for(let i; i < todos.length; i++){
-        // description += `${todos[i].description} and ${todos[i].personResponsible} is responsible.`
-        counter += 1
+      todos.forEach(function(todo){
+        sayer += `${todos[i].description} and ${todos[i].personResponsible} is responsible.`
         console.log(todos[i]);
+      })
+      return sayer;
       }
-
-    }
   return res.say(sayer)
     .send();
   });
