@@ -65,15 +65,15 @@ alexaApp.intent('DescriptionIntent', {
       let sayer;
 
     if (todos.length){
-      todos.forEach(function(todo){
+      for(let i = 0; i < todos.length; i++){
         sayer += `${todos[i].description} and ${todos[i].personResponsible} is responsible.`
         console.log(todos[i]);
       })
       return sayer;
-      }
+    }
   return res.say(sayer)
     .send();
-  });
+  };
 });
 
 
