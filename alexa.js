@@ -7,7 +7,7 @@ const Todo = require('./models/todo');
 const alexaApp = new alexa.app('cohort');
 
 alexaApp.launch(function(req, res) {
-  const prompt = 'Welcome to your todo app! Say, list all todos to get started.';
+  const prompt = 'Welcome! Say, list all todos to get started.';
 
   res.say(prompt)
     .reprompt(prompt)
@@ -15,7 +15,7 @@ alexaApp.launch(function(req, res) {
 });
 
 alexaApp.intent('ListIntent', {
-  slots: [],
+  slots: []
   utterances: [
     'list all tasks',
     'list all todos',
@@ -33,11 +33,11 @@ alexaApp.intent('ListIntent', {
       let reprompt = '';
 
       if (todos.length) {
-        say = `You have ${todos.length} to-dos to complete.`;
-        reprompt = 'Would you like me to list them?';
+        say = `You have ${todos.length} to-dos to complete. 'Say, description, to hear more about each.`;
+        reprompt = "Would you like for me to list your tasks?";
       } else {
         say = 'You have no to-dos to do!';
-        reprompt = 'You can add to-dos by saying, add todo blablabla';
+        reprompt = 'You can add to-dos by saying, add todo.';
       }
 
       console.log('say', say);
@@ -59,6 +59,19 @@ alexaApp.intent('AddTaskIntent', {
   console.log('AddTaskIntent', req);
 
   return res.say("Todo added!")
+    .send();
+});
+
+alexaApp.intent('DescriptionIntent', {
+  utterances: [
+    "description",
+    "tell me more",
+    "details"
+  ]
+}, function(req, res) {
+  console.log('DescriptionIntent', req);
+
+  return res.say("You have reached description intent")
     .send();
 });
 
