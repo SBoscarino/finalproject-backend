@@ -73,7 +73,7 @@ alexaApp.intent('DescriptionIntent', {
     }
   return res.say(sayer)
     .send();
-  };
+  });
 });
 
 
