@@ -70,7 +70,7 @@ alexaApp.intent('DescriptionIntent', {
     }
   return res.say("You have reached description intent")
     .send();
-  }
+  });
 });
 
 
