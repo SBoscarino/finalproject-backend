@@ -10,6 +10,9 @@
       "intent": "AddTaskIntent"
     },
     {
+      "intent": "DescriptionIntent"
+    },
+    {
       "intent": "AMAZON.CancelIntent"
     },
     {

@@ -15,7 +15,6 @@ alexaApp.launch(function(req, res) {
 });
 
 alexaApp.intent('ListIntent', {
-  slots: []
   utterances: [
     'list all tasks',
     'list all todos',
@@ -34,7 +33,7 @@ alexaApp.intent('ListIntent', {
 
       if (todos.length) {
         say = `You have ${todos.length} to-dos to complete. 'Say, description, to hear more about each.`;
-        reprompt = "Would you like for me to list your tasks?";
+        reprompt = 'Would you like for me to list your tasks?';
       } else {
         say = 'You have no to-dos to do!';
         reprompt = 'You can add to-dos by saying, add todo.';
@@ -50,6 +49,7 @@ alexaApp.intent('ListIntent', {
     });
 });
 
+
 alexaApp.intent('AddTaskIntent', {
   utterances: [
     "add task",
@@ -61,6 +61,7 @@ alexaApp.intent('AddTaskIntent', {
   return res.say("Todo added!")
     .send();
 });
+
 
 alexaApp.intent('DescriptionIntent', {
   utterances: [
@@ -74,6 +75,7 @@ alexaApp.intent('DescriptionIntent', {
   return res.say("You have reached description intent")
     .send();
 });
+
 
 alexaApp.intent('DeleteTaskIntent', {
   utterances: [
