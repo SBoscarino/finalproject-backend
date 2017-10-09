@@ -66,7 +66,9 @@ alexaApp.intent('DescriptionIntent', {
     if (todos.length){
       for(let i; i < todos.length; i++){
         description += `${todos[i].description} and ${todos[i].personResponsible} is responsible.`
+        console.log(todos[i]);
       }
+      return description;
     }
   return res.say(description)
     .send();
