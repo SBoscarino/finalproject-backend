@@ -14,7 +14,7 @@ alexaApp.launch(function(req, res) {
     .shouldEndSession(false);
 });
 
-app.intent("AMAZON.HelpIntent", {
+alexaApp.intent("AMAZON.HelpIntent", {
     "slots": {},
     "utterances": []
   },
@@ -25,7 +25,7 @@ app.intent("AMAZON.HelpIntent", {
   }
 );
 
-app.intent("AMAZON.CancelIntent", {
+alexaApp.intent("AMAZON.CancelIntent", {
     "slots": {},
     "utterances": []
   }, function(request, response) {
