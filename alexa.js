@@ -49,6 +49,22 @@ alexaApp.intent('ListIntent', {
     });
 });
 
+alexaApp.intent('DescriptionIntent', {
+  utterances: [
+    "description",
+    "tell me more",
+    "details"
+  ]
+}, function(req, res) {
+  console.log('DescriptionIntent', req);
+
+  for(let i; i < todos.length; i++){
+    res.say(`${todos[i].description} and ${todos[i].personResponsible} is responsible.`)
+  }
+  return res.say("You have reached description intent")
+    .send();
+});
+
 
 alexaApp.intent('AddTaskIntent', {
   utterances: [
@@ -61,21 +77,6 @@ alexaApp.intent('AddTaskIntent', {
   return res.say("Todo added!")
     .send();
 });
-
-
-alexaApp.intent('DescriptionIntent', {
-  utterances: [
-    "description",
-    "tell me more",
-    "details"
-  ]
-}, function(req, res) {
-  console.log('DescriptionIntent', req);
-
-  return res.say("You have reached description intent")
-    .send();
-});
-
 
 alexaApp.intent('DeleteTaskIntent', {
   utterances: [
