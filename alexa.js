@@ -7,7 +7,7 @@ const Todo = require('./models/todo');
 const alexaApp = new alexa.app('cohort');
 
 alexaApp.launch(function(req, res) {
-  const prompt = 'Welcome! Say, list all todos to get started.';
+  const prompt = 'Welcome to Cohort! Say, list all todos to get started.';
 
   res.say(prompt)
     .reprompt(prompt)
@@ -58,11 +58,19 @@ alexaApp.intent('DescriptionIntent', {
 }, function(req, res) {
   console.log('DescriptionIntent', req);
 
-  for(let i; i < todos.length; i++){
-    res.say(`${todos[i].description} and ${todos[i].personResponsible} is responsible.`)
-  }
+  return Todo.find({})
+    .exec(function(err, todos) {
+
+      let description;
+
+    if (todos.length){
+      for(let i; i < todos.length; i++){
+        res.say(`${todos[i].description} and ${todos[i].personResponsible} is responsible.`)
+      }
+    }
   return res.say("You have reached description intent")
     .send();
+  }
 });
 
 
