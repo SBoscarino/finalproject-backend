@@ -65,10 +65,10 @@ alexaApp.intent('DescriptionIntent', {
 
     if (todos.length){
       for(let i; i < todos.length; i++){
-        res.say(`${todos[i].description} and ${todos[i].personResponsible} is responsible.`)
+        description += `${todos[i].description} and ${todos[i].personResponsible} is responsible.`
       }
     }
-  return res.say("You have reached description intent")
+  return res.say(description)
     .send();
   });
 });
