@@ -14,6 +14,26 @@ alexaApp.launch(function(req, res) {
     .shouldEndSession(false);
 });
 
+app.intent("AMAZON.HelpIntent", {
+    "slots": {},
+    "utterances": []
+  },
+  function(request, response) {
+    var helpOutput = "You can say 'list tasks' to begin. You can also say stop or exit to quit.";
+    var reprompt = "What would you like to do?";
+    response.say(helpOutput).reprompt(reprompt).shouldEndSession(false);
+  }
+);
+
+app.intent("AMAZON.CancelIntent", {
+    "slots": {},
+    "utterances": []
+  }, function(request, response) {
+    var cancelOutput = "See you later, alligator.";
+    response.say(cancelOutput);
+  }
+);
+
 alexaApp.intent('ListIntent', {
   utterances: [
     'list all tasks',
@@ -69,7 +89,6 @@ alexaApp.intent('DescriptionIntent', {
         sayer += `${todos[i].description} and ${todos[i].personResponsible} is responsible.`
         console.log(todos[i]);
       }
-      return sayer;
     }
   return res.say(sayer)
     .send();
