@@ -86,7 +86,7 @@ alexaApp.intent('DescribeIntent', {
 
       if (todos.length) {
         for (let i = 0; i < todos.length; i++) {
-          say += `${todos[i].personResponsible} is responsible for the task ${todos[i].description}.`;
+          say += `${todos[i].personResponsible}, is responsible for the task, ${todos[i].description}...`;
           console.log(todos[i]);
         }
       } else {
