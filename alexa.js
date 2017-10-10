@@ -15,7 +15,7 @@ alexaApp.launch(function(req, res) {
       let reprompt = '';
 
       if (todos.length) {
-        say += ` You have ${todos.length} to-dos to complete. Say, description, to hear more about each, or add to-do to create a new task.`;
+        say += ` You have ${todos.length} to-dos to complete. Say, describe, to hear more about each, or add to-do to create a new task.`;
         reprompt = 'Would you like for me to list your tasks?';
       } else {
         say += ' You have no to-dos to do!';
@@ -89,6 +89,7 @@ alexaApp.intent('DescribeIntent', {
   utterances: [
     'tell me more',
     'describe',
+    'description'
     'details'
   ]
 }, function(req, res) {
@@ -124,7 +125,21 @@ alexaApp.intent('AddTaskIntent', {
     'add item',
     'add todo',
     'add a todo',
-    '{get a haircut|task}',
+    '{get a haircut|description}',
+    '{drink kombucha|description}',
+    '{play videogames|description}',
+    '{do the dishes|description}',
+    '{pay credit cards|description}',
+    '{buy groceries|description}',
+    '{vacuum living room|description}',
+    '{vacuum the stairs|description}',
+    '{take out the trash|description}',
+    '{clean litter box|description}',
+    '{rake leaves|description}',
+    '{eat steak|description}',
+    '{meet someone great today|description}',
+    '{meet a great employer|description}',
+    '{make something great|description}',
     '{person}'
   ],
   slots: [{

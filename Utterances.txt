@@ -17,6 +17,21 @@ AddTaskIntent add a todo
 AddTaskIntent add item
 AddTaskIntent {get a haircut|description}
 AddTaskIntent {person}
+AddTaskIntent {get a haircut|description}
+AddTaskIntent {drink kombucha|description}
+AddTaskIntent {play videogames|description}
+AddTaskIntent {do the dishes|description}
+AddTaskIntent {pay credit cards|description}
+AddTaskIntent {buy groceries|description}
+AddTaskIntent {vacuum living room|description}
+AddTaskIntent {vacuum the stairs|description}
+AddTaskIntent {take out the trash|description}
+AddTaskIntent {clean litter box|description}
+AddTaskIntent {rake leaves|description}
+AddTaskIntent {eat steak|description}
+AddTaskIntent {meet someone great today|description}
+AddTaskIntent {meet a great employer|description}
+AddTaskIntent {make something great|description}
 
 DeleteTaskIntent delete task
 DeleteTaskIntent delete todo
