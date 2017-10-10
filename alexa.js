@@ -124,10 +124,12 @@ alexaApp.intent('AddTaskIntent', {
     'add item',
     'add todo',
     'add a todo',
-    '{get a haircut|task}'
+    '{get a haircut|task}',
+    '{person}'
   ],
   slots: [{
-    task: 'AMAZON.LITERAL'
+    description: 'AMAZON.LITERAL',
+    person: 'AMAZON.US_FIRST_NAME'
   }]
 }, function(req, res) {
   console.log('AddTaskIntent', req);
@@ -136,14 +138,30 @@ alexaApp.intent('AddTaskIntent', {
 
   console.log('session', session);
 
-  if (!session.get('description')) {
+  if (req.slots.person.value) {
+    const newTodo = new Todo();
+
+    newTodo.description = session.get('description');
+    newTodo.personResponsible = req.slots.person.value;
+    newTodo.isComplete = false;
+    newTodo.dueDate = null;
+
+    newTodo.save()
+      .then(function() {
+        return res.say('Todo saved.')
+          .send();
+      });
+  } else if (req.slots.description.value) {
+    session.set('description', req.slots.description.value);
+
+    return res.say('Who is responsible?')
+      .shouldEndSession(false)
+      .send();
+  } else {
     return res.say('Please say what you want to do.')
       .shouldEndSession(false)
       .send();
   }
-
-  return res.say('Todo added!')
-    .send();
 });
 
 alexaApp.intent('DeleteTaskIntent', {

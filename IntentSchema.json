@@ -16,8 +16,12 @@
       "intent": "AddTaskIntent",
       "slots": [
         {
-          "name": "task",
+          "name": "description",
           "type": "AMAZON.LITERAL"
+        },
+        {
+          "name": "person",
+          "type": "AMAZON.US_FIRST_NAME"
         }
       ]
     },
