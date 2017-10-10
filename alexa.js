@@ -68,7 +68,7 @@ alexaApp.intent('ListIntent', {
       let reprompt = '';
 
       if (todos.length) {
-        say = `You have ${todos.length} to-dos to complete. Say, description, to hear more about each, or add to-do to create a new task.`;
+        say = `You have ${todos.length} to-dos to complete. Say, describe, to hear more about each, or add to-do to create a new task.`;
         reprompt = 'Would you like for me to list your tasks?';
       } else {
         say = 'You have no to-dos to do! Say add to-do to create a new task.';
