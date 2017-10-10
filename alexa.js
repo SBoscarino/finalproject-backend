@@ -7,24 +7,18 @@ const Todo = require('./models/todo');
 const alexaApp = new alexa.app('cohort'); // eslint-disable-line
 
 alexaApp.launch(function(req, res) {
-  // const prompt = 'Welcome to Cohort! Say, list all tasks to get started.';
-  //
-  // return res.say(prompt)
-  //   .reprompt(prompt)
-  //   .shouldEndSession(false);
-
   return Todo.find({})
     .exec(function(err, todos) {
       console.log('todos', todos);
 
-      let say = '';
+      let say = 'Welcome to Cohort!';
       let reprompt = '';
 
       if (todos.length) {
-        say = `You have ${todos.length} to-dos to complete. Say, description, to hear more about each.`;
+        say += ` You have ${todos.length} to-dos to complete. Say, description, to hear more about each.`;
         reprompt = 'Would you like for me to list your tasks?';
       } else {
-        say = 'You have no to-dos to do!';
+        say += ' You have no to-dos to do!';
         reprompt = 'You can add to-dos by saying, add todo.';
       }
 
@@ -74,10 +68,10 @@ alexaApp.intent('ListIntent', {
       let reprompt = '';
 
       if (todos.length) {
-        say = `You have ${todos.length} to-dos to complete. Say, description, to hear more about each.`;
+        say = `You have ${todos.length} to-dos to complete. Say, description, to hear more about each, or add to-do to create a new task.`;
         reprompt = 'Would you like for me to list your tasks?';
       } else {
-        say = 'You have no to-dos to do!';
+        say = 'You have no to-dos to do! Say add to-do to create a new task.';
         reprompt = 'You can add to-dos by saying, add todo.';
       }
 
@@ -93,8 +87,6 @@ alexaApp.intent('ListIntent', {
 
 alexaApp.intent('DescribeIntent', {
   utterances: [
-    'yes',
-    'no',
     'tell me more',
     'describe',
     'details'
@@ -116,7 +108,10 @@ alexaApp.intent('DescribeIntent', {
         say = 'You have no to-dos to do!';
       }
 
+      say += ' Say add to-do to create a new task.'
+
       return res.say(say)
+        .shouldEndSession(false)
         .send();
     });
 });
