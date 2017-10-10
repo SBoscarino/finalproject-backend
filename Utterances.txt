@@ -15,7 +15,7 @@ AddTaskIntent add item
 AddTaskIntent add a task
 AddTaskIntent add a todo
 AddTaskIntent add item
-AddTaskIntent {response}
+AddTaskIntent {get a haircut|task}
 
 DeleteTaskIntent delete task
 DeleteTaskIntent delete todo

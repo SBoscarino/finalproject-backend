@@ -108,7 +108,7 @@ alexaApp.intent('DescribeIntent', {
         say = 'You have no to-dos to do!';
       }
 
-      say += ' Say, add to-do to create a new task.'
+      say += ' Say, add to-do to create a new task.';
 
       return res.say(say)
         .shouldEndSession(false)
@@ -123,10 +123,11 @@ alexaApp.intent('AddTaskIntent', {
     'add an item',
     'add item',
     'add todo',
-    'add a todo'
+    'add a todo',
+    '{get a haircut|task}'
   ],
   slots: [{
-    response: 'AMAZON.LITERAL'
+    task: 'AMAZON.LITERAL'
   }]
 }, function(req, res) {
   console.log('AddTaskIntent', req);

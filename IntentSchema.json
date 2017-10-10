@@ -16,7 +16,7 @@
       "intent": "AddTaskIntent",
       "slots": [
         {
-          "name": "response",
+          "name": "task",
           "type": "AMAZON.LITERAL"
         }
       ]
