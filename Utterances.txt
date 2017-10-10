@@ -11,6 +11,10 @@ ListIntent list todos
 
 AddTaskIntent add task
 AddTaskIntent add todo
+AddTaskIntent add item
+AddTaskIntent add a task
+AddTaskIntent add a todo
+AddTaskIntent add item
 
 DeleteTaskIntent delete task
 DeleteTaskIntent delete todo
