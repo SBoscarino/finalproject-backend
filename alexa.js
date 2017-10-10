@@ -89,7 +89,7 @@ alexaApp.intent('DescribeIntent', {
   utterances: [
     'tell me more',
     'describe',
-    'description'
+    'description',
     'details'
   ]
 }, function(req, res) {
