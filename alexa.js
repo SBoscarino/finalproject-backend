@@ -146,9 +146,9 @@ alexaApp.intent('AddTaskIntent', {
     newTodo.isComplete = false;
     newTodo.dueDate = null;
 
-    newTodo.save()
-      .then(function() {
-        return res.say('Todo saved.')
+    return newTodo.save()
+      .then(function(todo) {
+        return res.say(`Added todo, ${todo.description} for ${todo.personResponsible} to complete.`)
           .send();
       });
   } else if (req.slots.description.value) {
@@ -157,11 +157,11 @@ alexaApp.intent('AddTaskIntent', {
     return res.say('Who is responsible?')
       .shouldEndSession(false)
       .send();
-  } else {
-    return res.say('Please say what you want to do.')
-      .shouldEndSession(false)
-      .send();
   }
+
+  return res.say('Please say what you want to do.')
+    .shouldEndSession(false)
+    .send();
 });
 
 alexaApp.intent('DeleteTaskIntent', {
