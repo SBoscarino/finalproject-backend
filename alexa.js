@@ -7,11 +7,34 @@ const Todo = require('./models/todo');
 const alexaApp = new alexa.app('cohort'); // eslint-disable-line
 
 alexaApp.launch(function(req, res) {
-  const prompt = 'Welcome to Cohort! Say, list all tasks to get started.';
+  // const prompt = 'Welcome to Cohort! Say, list all tasks to get started.';
+  //
+  // return res.say(prompt)
+  //   .reprompt(prompt)
+  //   .shouldEndSession(false);
 
-  res.say(prompt)
-    .reprompt(prompt)
-    .shouldEndSession(false);
+  return Todo.find({})
+    .exec(function(err, todos) {
+      console.log('todos', todos);
+
+      let say = '';
+      let reprompt = '';
+
+      if (todos.length) {
+        say = `You have ${todos.length} to-dos to complete. Say, description, to hear more about each.`;
+        reprompt = 'Would you like for me to list your tasks?';
+      } else {
+        say = 'You have no to-dos to do!';
+        reprompt = 'You can add to-dos by saying, add todo.';
+      }
+
+      console.log('say', say);
+      console.log('reprompt', reprompt);
+
+      return res.say(say)
+        .shouldEndSession(false)
+        .reprompt(reprompt);
+    });
 });
 
 alexaApp.intent('AMAZON.HelpIntent', {
@@ -86,7 +109,7 @@ alexaApp.intent('DescribeIntent', {
 
       if (todos.length) {
         for (let i = 0; i < todos.length; i++) {
-          say += `${todos[i].personResponsible}, is responsible for the task, ${todos[i].description}...`;
+          say += `${todos[i].personResponsible}, is responsible for the task, ${todos[i].description},`;
           console.log(todos[i]);
         }
       } else {
