@@ -124,7 +124,10 @@ alexaApp.intent('AddTaskIntent', {
     'add item',
     'add todo',
     'add a todo'
-  ]
+  ],
+  slots: [{
+    response: 'AMAZON.LITERAL'
+  }]
 }, function(req, res) {
   console.log('AddTaskIntent', req);
 

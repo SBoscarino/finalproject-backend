@@ -13,7 +13,13 @@
       "intent": "DeleteTaskIntent"
     },
     {
-      "intent": "AddTaskIntent"
+      "intent": "AddTaskIntent",
+      "slots": [
+        {
+          "name": "response",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
     },
     {
       "intent": "DescribeIntent"
