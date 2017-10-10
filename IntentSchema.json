@@ -1,7 +1,13 @@
 {
   "intents": [
     {
-      "intent": "ListIntent"
+      "intent": "ListIntent",
+      "slots": [
+        {
+          "name": "answer",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
     },
     {
       "intent": "DeleteTaskIntent"
@@ -10,7 +16,7 @@
       "intent": "AddTaskIntent"
     },
     {
-      "intent": "DescriptionIntent"
+      "intent": "DescribeIntent"
     },
     {
       "intent": "AMAZON.CancelIntent"

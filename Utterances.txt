@@ -17,6 +17,8 @@ DeleteTaskIntent delete todo
 DeleteTaskIntent remove task
 DeleteTaskIntent remove todo
 
-DescriptionIntent tell me more
-DescriptionIntent describe
-DescriptionIntent details
+DescribeIntent yes
+DescribeIntent no
+DescribeIntent tell me more
+DescribeIntent describe
+DescribeIntent details

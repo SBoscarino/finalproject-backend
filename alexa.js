@@ -7,7 +7,7 @@ const Todo = require('./models/todo');
 const alexaApp = new alexa.app('cohort');
 
 alexaApp.launch(function(req, res) {
-  const prompt = 'Welcome to Cohort! Say, list all todos to get started.';
+  const prompt = 'Welcome to Cohort! Say, list all tasks to get started.';
 
   res.say(prompt)
     .reprompt(prompt)
@@ -52,7 +52,7 @@ alexaApp.intent('ListIntent', {
       let reprompt = '';
 
       if (todos.length) {
-        say = `You have ${todos.length} to-dos to complete. 'Say, description, to hear more about each.`;
+        say = `You have ${todos.length} to-dos to complete. Say, description, to hear more about each.`;
         reprompt = 'Would you like for me to list your tasks?';
       } else {
         say = 'You have no to-dos to do!';
@@ -69,10 +69,12 @@ alexaApp.intent('ListIntent', {
     });
 });
 
-alexaApp.intent('DescriptionIntent', {
+alexaApp.intent('DescribeIntent', {
   utterances: [
-    "description",
+    "yes",
+    "no",
     "tell me more",
+    "describe",
     "details"
   ]
 }, function(req, res) {
@@ -81,17 +83,20 @@ alexaApp.intent('DescriptionIntent', {
   return Todo.find({})
     .exec(function(err, todos) {
 
-      // let description;
-      let sayer;
+    // let description;
+    let say = '';
 
-    if (todos.length){
-      for(let i = 0; i < todos.length; i++){
-        sayer += `${todos[i].description} and ${todos[i].personResponsible} is responsible.`
+    if (todos.length) {
+      for (let i = 0; i < todos.length; i++) {
+        say += ` ${todos[i].description} and ${todos[i].personResponsible} is responsible.`;
         console.log(todos[i]);
       }
+    } else {
+      say = 'You have no to-dos to do!';
     }
-  return res.say(sayer)
-    .send();
+
+    return res.say(say)
+      .send();
   });
 });
 
