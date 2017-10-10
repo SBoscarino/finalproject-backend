@@ -132,6 +132,12 @@ alexaApp.intent('AddTaskIntent', {
 
   console.log('session', session);
 
+  if (!session.get('description')) {
+    return res.say('Please say what you want to do.')
+      .shouldEndSession(false)
+      .send();
+  }
+
   return res.say('Todo added!')
     .send();
 });
