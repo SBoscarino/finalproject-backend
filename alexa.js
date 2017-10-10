@@ -128,6 +128,10 @@ alexaApp.intent('AddTaskIntent', {
 }, function(req, res) {
   console.log('AddTaskIntent', req);
 
+  const session = req.getSession();
+
+  console.log('session', session);
+
   return res.say('Todo added!')
     .send();
 });
